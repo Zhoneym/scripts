@@ -45,17 +45,11 @@ sudo DEBIAN_FRONTEND=noninteractive \
     libxml-simple-perl libswitch-perl apt-utils rsync \
     ${PACKAGES} -y
 
-echo -e "Installing GitHub CLI"
-curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
-sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
-sudo apt update
-export http_proxy=http://192.168.1.4:7890
-export https_proxy=http://192.168.1.4:7890
-sudo apt install -y gh
+wget https://github.com/cli/cli/releases/download/v2.38.0/gh_2.38.0_linux_amd64.deb
+sudo apt install -y gh_2.38.0_linux_amd64.deb
 
 echo -e "Setting up udev rules for adb!"
-sudo mv 51-android.rules /etc/udev/rules.d/51-android.rules
+sudo cp 51-android.rules /etc/udev/rules.d/51-android.rules
 sudo chmod 644 /etc/udev/rules.d/51-android.rules
 sudo chown root /etc/udev/rules.d/51-android.rules
 sudo systemctl restart udev
@@ -69,5 +63,5 @@ if [[ "$(command -v make)" ]]; then
 fi
 
 echo "Installing repo"
-sudo curl --create-dirs -L -o /usr/local/bin/repo -O -L https://storage.googleapis.com/git-repo-downloads/repo
+sudo cp -a ~/bin/repo /usr/local/bin/repo
 sudo chmod a+rx /usr/local/bin/repo
