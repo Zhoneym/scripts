@@ -42,11 +42,10 @@ sudo DEBIAN_FRONTEND=noninteractive \
     maven ncftp ncurses-dev patch patchelf pkg-config pngcrush \
     pngquant python2.7 python-all-dev re2c schedtool squashfs-tools subversion \
     texinfo unzip w3m xsltproc zip zlib1g-dev lzip \
-    libxml-simple-perl libswitch-perl apt-utils rsync \
-    ${PACKAGES} -y
+    libxml-simple-perl libswitch-perl apt-utils rsync -y
 
 wget https://github.com/cli/cli/releases/download/v2.38.0/gh_2.38.0_linux_amd64.deb
-sudo apt install -y gh_2.38.0_linux_amd64.deb
+sudo gdebi -y gh_2.38.0_linux_amd64.deb
 
 echo -e "Setting up udev rules for adb!"
 sudo cp 51-android.rules /etc/udev/rules.d/51-android.rules
