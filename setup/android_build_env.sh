@@ -45,7 +45,6 @@ sudo DEBIAN_FRONTEND=noninteractive \
     libxml-simple-perl libswitch-perl apt-utils rsync gdebi -y
 
 wget https://github.com/cli/cli/releases/download/v2.38.0/gh_2.38.0_linux_amd64.deb
-sudo gdebi -y gh_2.38.0_linux_amd64.deb
 
 echo -e "Setting up udev rules for adb!"
 sudo cp 51-android.rules /etc/udev/rules.d/51-android.rules
